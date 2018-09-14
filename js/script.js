@@ -12,19 +12,17 @@ let isInteger = (num) => {
 };
 
 let checkNumber = (num) => {
-    return !(isNaN(num) || !isInteger(num) || num <= 1);
+    return !(isNaN(num) || !isInteger(num) || num <= 0);
 
 };
 
-let prinArr = (arr) => {
-    console.log("Simplex numbers in diapason [2, " + to + "]:");
-    document.write("Simplex numbers in diapason [2, " + to + "]:" + "<br>");
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] === true) {
-            console.log(i);
-            document.write(i + "<br />");
-        }
-    }
+let printArr = (arr) => {
+    console.log("Simplex numbers in diapason [1, " + to + "]:");
+    document.write("Simplex numbers in diapason [1, " + to + "]:" + "<br>");
+    arr.forEach((item) => {
+        console.log(item);
+        document.write(item + "<br />");
+    });
 };
 
 let to = prompt("Enter number TO: ");
@@ -33,24 +31,18 @@ while (!checkNumber(to)) {
     to = prompt("Enter correct number TO: ");
 }
 
-let getSimpNums = (from, to) => {
-    let arr = [];
-    for (let i = from; i < to; i++) {
-        arr[i] = true
+let getPrimes = (n) => {
+    let a = new Array(parseInt(n = n / 2)),
+        t = (Math.sqrt(4 + 8 * n) - 2) / 4,
+        u = 0,
+        r = [];
+    for (let i = 1; i < (n - 1) / 3; i++) a[1 + 3 * i] = true;
+    for (let i = 2; i <= t; i++) {
+        u = (n - i) / (1 + 2 * i);
+        if (i % 3 - 1) for (let j = i; j < u; j++) a[i + j + 2 * i * j] = true;
     }
-    let p = from;
-    do {
-        for (i = from * p; i < to; i += p) {
-            arr[i] = false;
-        }
-        for (i = p + 1; i < to; i++) {
-            if (arr[i]) {
-                break;
-            }
-        }
-        p = i;
-    } while (p * p < to);
-    return arr;
+    for (let i = 0; i < n; i++) !a[i] && r.push(i * 2 + 1);
+    return r;
 };
 
-prinArr(getSimpNums(2, to));
+printArr(getPrimes(to));
