@@ -12,7 +12,7 @@ let isInteger = (num) => {
 };
 
 let checkNumber = (num) => {
-    return !(isNaN(num) || !isInteger(num) || num <= 0);
+    return !(isNaN(num) || !isInteger(num) || num < 1);
 
 };
 
