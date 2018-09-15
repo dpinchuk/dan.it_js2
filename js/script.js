@@ -42,17 +42,25 @@ while (from > to) {
 }
 
 let getPrimes = (to) => {
-    let a = new Array(parseInt(to = to / 2)),
+    let arr = new Array(parseInt(to = to / 2)),
         t = (Math.sqrt(4 + 8 * to) - 2) / 4,
         u = 0,
-        r = [];
-    for (let i = 1; i < (to - 1) / 3; i++) a[1 + 3 * i] = true;
+        result = [];
+    for (let i = 1; i < (to - 1) / 3; i++) {
+        arr[1 + 3 * i] = true;
+    }
     for (let i = 2; i <= t; i++) {
         u = (to - i) / (1 + 2 * i);
-        if (i % 3 - 1) for (let j = i; j < u; j++) a[i + j + 2 * i * j] = true;
+        if (i % 3 - 1) {
+            for (let j = i; j < u; j++) {
+                arr[i + j + 2 * i * j] = true;
+            }
+        }
     }
-    for (let i = 0; i < to; i++) !a[i] && r.push(i * 2 + 1);
-    return r;
+    for (let i = 0; i < to; i++) {
+        !arr[i] && result.push(i * 2 + 1);
+    }
+    return result;
 };
 
 printArr(getPrimes(to), from, to);
