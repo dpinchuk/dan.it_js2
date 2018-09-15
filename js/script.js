@@ -60,7 +60,7 @@ let getPrimes = (to) => {
     for (let i = 0; i < to; i++) {
         !arr[i] && result.push(i * 2 + 1);
     }
-    return result;
+    return result
 };
 
 printArr(getPrimes(to), from, to);
